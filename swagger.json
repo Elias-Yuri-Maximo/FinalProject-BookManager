@@ -1,0 +1,247 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Elias'Maximo",
+      "description": "bookmarks",
+      "version": "1.0.0"
+    },
+    "host": "personalassignment8.onrender.com",
+    "basePath": "/",
+
+    "paths": {
+        "/api-docs": {
+            "get": {
+              "description": "This is the endpoint for the documentation",
+              "parameters": [],
+              "responses": {}
+            }
+          },
+
+      "/bookmarks/": {
+
+
+        "get": {
+                "description": "Gets All records",
+                "produces": [
+                    "application/json"
+                ],
+                
+                "parameters": [
+                  {
+                    "name": "Authorization",
+                    "in": "header",
+                    "description": "Bearer token",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "responses": {
+                    "200": {
+                    "description": "OK"
+                    }
+            }
+            },
+
+
+        "post":{
+                "description": "Inserts new record",
+                "parameters": [
+                    {
+                    "name": "body",
+                    "in": "body",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                          "title":{"example":"My Book Of Mormon Reading"},
+                          "note":{"example":"Reading the book of Mormon cover to cover"},
+                          "book":{"example":"bookOfMormon"},
+                          "currentBook":{"example":"1nephi"},
+                          "currentChapter":{"example":"1"},
+                          "progressPercent":{"example":"0"},
+                          "lastReadIn":{"example":"01-apr-2022"}
+                          
+                        }
+                    }
+                    },
+                    {
+                      "name": "Authorization",
+                      "in": "header",
+                      "description": "Bearer token",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                    "description": "Created"
+                    },
+                    "500": {
+                    "description": "Internal Server Error"
+                    },
+                    "400": {
+                      "description": "Bad Request"
+                      }
+                }
+                }
+            },
+      "/bookmarks/content/{id}":{
+        "get": {
+          "description": "Gets a specific Content",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }, 
+            {
+              "name": "Authorization",
+              "in": "header",
+              "description": "Bearer token",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+
+      },
+
+
+      "/bookmarks/{id}": {
+
+
+
+        "get": {
+          "description": "Gets a specific record",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }, 
+            {
+              "name": "Authorization",
+              "in": "header",
+              "description": "Bearer token",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        
+
+        "put": {
+          "description": "Alters an existing record",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title":{"example":"My Book Of Mormon Reading"},
+                  "note":{"example":"Reading the book of Mormon cover to cover"},
+                  "book":{"example":"bookOfMormon"},
+                  "currentBook":{"example":"1nephi"},
+                  "currentChapter":{"example":"1"},
+                  "progressPercent":{"example":"0"}
+                
+                }
+              }
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "description": "Bearer token",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            },
+            "400": {
+              "description": "Bad Request"
+              }
+          }
+        },
+
+
+
+        "delete": {
+          "description": "Deletes record",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "description": "Bearer token",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            },
+            "400": {
+              "description": "Bad Request"
+              }
+          }
+        }
+
+
+          }
+        }
+
+      }
+    
+    
+  
