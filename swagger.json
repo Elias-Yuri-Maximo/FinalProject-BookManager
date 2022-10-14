@@ -5,23 +5,21 @@
       "description": "bookmarks",
       "version": "1.0.0"
     },
-    "host": "personalassignment8.onrender.com",
+    "host": "localhost:8080",
     "basePath": "/",
 
     "paths": {
         "/api-docs": {
             "get": {
-              "description": "This is the endpoint for the documentation",
+              "description": "This is the endpoint for the documentation of the ",
               "parameters": [],
               "responses": {}
             }
           },
-          
-      "/bookmarks/": {
 
-
+      "manager/wishlist/": {
         "get": {
-                "description": "Gets All records",
+                "description": "Gets All records on the wishlist",
                 "produces": [
                     "application/json"
                 ],
@@ -41,9 +39,8 @@
                     "200": {
                     "description": "OK"
                     }
-            }
+              }
             },
-
 
         "post":{
                 "description": "Inserts new record",
@@ -53,16 +50,16 @@
                     "in": "body",
                     "schema": {
                         "type": "object",
-                        "properties": {
-                          "title":{"example":"My Book Of Mormon Reading"},
-                          "note":{"example":"Reading the book of Mormon cover to cover"},
-                          "book":{"example":"bookOfMormon"},
-                          "currentBook":{"example":"1nephi"},
-                          "currentChapter":{"example":"1"},
-                          "progressPercent":{"example":"0"},
-                          "lastReadIn":{"example":"01-apr-2022"}
-                          
-                        }
+                        "properties": 
+                        { 
+                          "authorFName": {"example":"Joanne"},
+                          "authorLName": {"example":"Rowling"},
+                          "user": {"example":"1"},
+                          "title": {"example":"Harry Potter and the Philosopher's Stone"},
+                          "genre": {"example":"Fantasy"},
+                          "pages": {"example":"223"},
+                          "preview": {"example":"Harry Potter and the Philosopher's Stone is a 1997 fantasy novel written by British author J. K. Rowling. The first novel in the Harry Potter series and Rowling's debut novel, it follows Harry Potter, a young wizard who discovers his magical heritage on his eleventh birthday, when he receives a letter of acceptance to Hogwarts School of Witchcraft and Wizardry. Harry makes close friends and a few enemies during his first year at the school and with the help of his friends, he faces an attempted comeback by the dark wizard Lord Voldemort, who killed Harry's parents, but failed to kill Harry when he was just 15 months old."}
+                      }    
                     }
                     },
                     {
@@ -87,43 +84,397 @@
                       }
                 }
                 }
+                
+                
             },
-      "/bookmarks/content/{id}":{
-        "get": {
-          "description": "Gets a specific Content",
-          "produces": [
-            "application/json"
-          ],
+
+            "manager/wishlist/{:id}": {
+              "get": {
+                      "description": "Gets specific record on the wishlist",
+                      "produces": [
+                          "application/json"
+                      ],
+                      
+                      "parameters": [
+                        {
+                          "name": "Authorization",
+                          "in": "header",
+                          "description": "Bearer token",
+                          "required": true,
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      ],
+                      "responses": {
+                          "200": {
+                          "description": "OK"
+                          }
+                    }
+                  },
+      
+              "put":{
+                      "description": "Inserts new record",
+                      "parameters": [
+                          {
+                          "name": "body",
+                          "in": "body",
+                          "schema": {
+                              "type": "object",
+                              "properties":{ 
+                                "authorFName": {"example":"Joanne"},
+                                "authorLName": {"example":"Rowling"},
+                                "user": {"example":"1"},
+                                "title": {"example":"Harry Potter and the Philosopher's Stone"},
+                                "genre": {"example":"Fantasy"},
+                                "pages": {"example":"223"},
+                                "preview": {"example":"Harry Potter and the Philosopher's Stone is a 1997 fantasy novel written by British author J. K. Rowling. The first novel in the Harry Potter series and Rowling's debut novel, it follows Harry Potter, a young wizard who discovers his magical heritage on his eleventh birthday, when he receives a letter of acceptance to Hogwarts School of Witchcraft and Wizardry. Harry makes close friends and a few enemies during his first year at the school and with the help of his friends, he faces an attempted comeback by the dark wizard Lord Voldemort, who killed Harry's parents, but failed to kill Harry when he was just 15 months old."}
+                            }    
+                          }
+                          },
+                          {
+                            "name": "Authorization",
+                            "in": "header",
+                            "description": "Bearer token",
+                            "required": true,
+                            "schema": {
+                              "type": "string"
+                            }
+                          }
+                      ],
+                      "responses": {
+                          "201": {
+                          "description": "Created"
+                          },
+                          "500": {
+                          "description": "Internal Server Error"
+                          },
+                          "400": {
+                            "description": "Bad Request"
+                            }
+                      }
+                      },
+              "delete":{
+                        "description": "Deletes record",
+                        "parameters": [
+                          {
+                            "name": "id",
+                            "in": "path",
+                            "required": true,
+                            "type": "string"
+                          },
+                          {
+                            "name": "Authorization",
+                            "in": "header",
+                            "description": "Bearer token",
+                            "required": true,
+                            "schema": {
+                              "type": "string"
+                            }
+                          }
+                        ],
+                        "responses": {
+                          "204": {
+                            "description": "No Content"
+                          },
+                          "500": {
+                            "description": "Internal Server Error"
+                          },
+                          "400": {
+                            "description": "Bad Request"
+                            }
+                        }
+              
+                      }
+                    },
+            "manager/wishlist/findByAuthor": {
+                  "get": {
+                              "description": "Gets specific record on the wishlist by author",
+                              "produces": [
+                                  "application/json"
+                              ],
+                              
+                              "parameters": [
+                                {
+                                  "name": "Authorization",
+                                  "in": "header",
+                                  "description": "Bearer token",
+                                  "required": true,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                }
+                              ],
+                              "responses": {
+                                  "200": {
+                                  "description": "OK"
+                                  }
+                            }
+                          }
+            }, "manager/wishlist/findByTitle": {
+                "get": {
+                              "description": "Gets specific record on the wishlist by author",
+                              "produces": [
+                                  "application/json"
+                              ],
+                              
+                              "parameters": [
+                                {
+                                  "name": "Authorization",
+                                  "in": "header",
+                                  "description": "Bearer token",
+                                  "required": true,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                }
+                              ],
+                              "responses": {
+                                  "200": {
+                                  "description": "OK"
+                                  }
+                            }
+                          }
+            }, "manager/wishlist/findByGenre": {
+                "get": {
+                              "description": "Gets specific record on the wishlist by author",
+                              "produces": [
+                                  "application/json"
+                              ],
+                              
+                              "parameters": [
+                                {
+                                  "name": "Authorization",
+                                  "in": "header",
+                                  "description": "Bearer token",
+                                  "required": true,
+                                  "schema": {
+                                    "type": "string"
+                                  }
+                                }
+                              ],
+                              "responses": {
+                                  "200": {
+                                  "description": "OK"
+                                  }
+                            }
+                          }
+                    },
+
+        
+        "manager/readings/": {
+          "get": {
+            "description": "Gets All records on the wishlist",
+              "produces": [
+                "application/json"
+                    ],
+                              
+              "parameters":     [
+                   {
+                    "name": "Authorization",
+                    "in": "header",
+                      "description": "Bearer token",
+                      "required": true,
+                        "schema": {
+                           "type": "string"
+                              }
+                                }
+                              ],
+                              "responses": {
+                                  "200": {
+                                  "description": "OK"
+                                  }
+                            }
+                          },
+                    
+          "post":{
+                    "description": "Inserts new record",
+                          "parameters": [
+                              {
+                              "name": "body",
+                              "in": "body",
+                              "schema": {
+                                  "type": "object",
+                                  "properties": 
+                                  { 
+                                    "notes": {"example":"Harry Potter lives with his abusive aunt and uncle, Vernon and Petunia Dursley and their bullying son, Dudley. On Harry's eleventh birthday, a half-giant named Rubeus Hagrid personally delivers an acceptance letter to Hogwarts School of Witchcraft and Wizardry, revealing that Harry's parents, James and Lily Potter, were wizards. When Harry was one year old, an evil and powerful dark wizard, Lord Voldemort, murdered his parents. Harry survived Voldemort's killing curse that rebounded off his forehead and seemingly destroyed the Dark Lord, leaving a lightning bolt-shaped scar on his forehead. Unknown to Harry, he is famous in the wizarding world."},
+                                    "progress": {"example":"80%"},
+                                    "grade": {"example":"4.5"}
+                                  }    
+                              }
+                              },
+                              {
+                                "name": "Authorization",
+                                "in": "header",
+                                "description": "Bearer token",
+                                "required": true,
+                                "schema": {
+                                  "type": "string"
+                                }
+                              }
+                          ],
+                          "responses": {
+                              "201": {
+                              "description": "Created"
+                              },
+                              "500": {
+                              "description": "Internal Server Error"
+                              },
+                              "400": {
+                                "description": "Bad Request"
+                                }
+                          }
+                          }
+                          
+                      },
+                    
+        "/manager/readings/{id}":{
+
+              "get": {
+                        "description": "Gets a specific Content",
+                        "produces": [
+                          "application/json"
+                        ],
+                        "parameters": [
+                          {
+                            "name": "id",
+                            "in": "path",
+                            "required": true,
+                            "type": "string"
+                          }, 
+                          {
+                            "name": "Authorization",
+                            "in": "header",
+                            "description": "Bearer token",
+                            "required": true,
+                            "schema": {
+                              "type": "string"
+                            }
+                          }
+                        ],
+                        "responses": {
+                          "200": {
+                            "description": "OK"
+                          }
+                        }
+        },
+        "delete":{
+                    "description": "Deletes record",
+                    "parameters": [
+                      {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                      },
+                      {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Bearer token",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      }
+                    ],
+                    "responses": {
+                      "204": {
+                        "description": "No Content"
+                      },
+                      "500": {
+                        "description": "Internal Server Error"
+                      },
+                      "400": {
+                        "description": "Bad Request"
+                        }
+                    }
+
+        },
+                "put":{
+                  "description": "Inserts new record",
+                  "parameters": [
+                      {
+                      "name": "body",
+                      "in": "body",
+                      "schema": {
+                          "type": "object",
+                          "properties": 
+                          { 
+                            "notes": {"example":"Harry Potter and the Philosopher's Stone is a 199"},
+                            "progress": {"example":"80%"},
+                            "grade": {"example":"4.5"}
+                        }    
+                      }
+                      },
+                      {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Bearer token",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      }
+                  ],
+                  "responses": {
+                      "201": {
+                      "description": "Created"
+                      },
+                      "500": {
+                      "description": "Internal Server Error"
+                      },
+                      "400": {
+                        "description": "Bad Request"
+                        }
+                  }
+          
+        }
+      },
+      "manager/users/": {
+        "post":{
+          "description": "Inserts new record",
           "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            }, 
-            {
-              "name": "Authorization",
-              "in": "header",
-              "description": "Bearer token",
-              "required": true,
+              {
+              "name": "body",
+              "in": "body",
               "schema": {
-                "type": "string"
+                  "type": "object",
+                  "properties": 
+                  { 
+                    "firstName":{"example":"Harry"},
+                    "lastName":{"example":"Potter"},
+                    "nickName":{"example":"The Boy Who Lived"},
+                    "password":{"example":"on_h3rmione"}
+                  }    
               }
-            }
+              },
+              {
+                "name": "Authorization",
+                "in": "header",
+                "description": "Bearer token",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              }
           ],
           "responses": {
-            "200": {
-              "description": "OK"
-            }
+              "201": {
+              "description": "Created"
+              },
+              "500": {
+              "description": "Internal Server Error"
+              },
+              "400": {
+                "description": "Bad Request"
+                }
           }
-        }
+          }
 
       },
 
 
-      "/bookmarks/{id}": {
-
-
+      "manager/users/{id}": {
 
         "get": {
           "description": "Gets a specific record",
@@ -170,12 +521,10 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "title":{"example":"My Book Of Mormon Reading"},
-                  "note":{"example":"Reading the book of Mormon cover to cover"},
-                  "book":{"example":"bookOfMormon"},
-                  "currentBook":{"example":"1nephi"},
-                  "currentChapter":{"example":"1"},
-                  "progressPercent":{"example":"0"}
+                  "firstName":{"example":"Harry"},
+                  "lastName":{"example":"Potter"},
+                  "nickName":{"example":"The Boy Who Lived"},
+                  "password":{"example":"on_h3rmione"}
                 
                 }
               }
@@ -235,13 +584,262 @@
               "description": "Bad Request"
               }
           }
+
+          
         }
 
 
-          }
+          },      
+        
+          "manager/shelf/": {
+            "get": {
+              "description": "Gets All records on the shelf",
+              "produces": [
+                  "application/json"
+              ],
+              
+              "parameters": [
+                {
+                  "name": "Authorization",
+                  "in": "header",
+                  "description": "Bearer token",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "responses": {
+                  "200": {
+                  "description": "OK"
+                  }
+            }
+          },
+          "post":{
+            "description": "Inserts new record",
+            "parameters": [
+                {
+                "name": "body",
+                "in": "body",
+                "schema": {
+                    "type": "object",
+                    "properties": 
+                    { 
+                      "authorFName": {"example":"Joanne"},
+                      "authorLName": {"example":"Rowling"},
+                      "user": {"example":"1"},
+                      "title": {"example":"Harry Potter and the Philosopher's Stone"},
+                      "genre": {"example":"Fantasy"},
+                      "pages": {"example":"223"},
+                      "preview": {"example":"Harry Potter and the Philosopher's Stone is a 1997 fantasy novel written by British author J. K. Rowling. The first novel in the Harry Potter series and Rowling's debut novel, it follows Harry Potter, a young wizard who discovers his magical heritage on his eleventh birthday, when he receives a letter of acceptance to Hogwarts School of Witchcraft and Wizardry. Harry makes close friends and a few enemies during his first year at the school and with the help of his friends, he faces an attempted comeback by the dark wizard Lord Voldemort, who killed Harry's parents, but failed to kill Harry when he was just 15 months old."},
+                      "read": {"example":"reading"},
+                      "dateBought": {"example":"10/12/2022"}
+                  }    
+                }
+                },
+                {
+                  "name": "Authorization",
+                  "in": "header",
+                  "description": "Bearer token",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+            ],
+            "responses": {
+                "201": {
+                "description": "Created"
+                },
+                "500": {
+                "description": "Internal Server Error"
+                },
+                "400": {
+                  "description": "Bad Request"
+                  }
+            }
+            }
+          },
+          "manager/shelf/{:id}": {
+            "get": {
+                    "description": "Gets specific record on the shlef by id",
+                    "produces": [
+                        "application/json"
+                    ],
+                    
+                    "parameters": [
+                      {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Bearer token",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      }
+                    ],
+                    "responses": {
+                        "200": {
+                        "description": "OK"
+                        }
+                  }
+                },
+                "put":{
+                  "description": "Update a record on shelf",
+                  "parameters": [
+                      {
+                      "name": "body",
+                      "in": "body",
+                      "schema": {
+                          "type": "object",
+                          "properties": 
+                          { 
+                            "authorFName": {"example":"Joanne"},
+                            "authorLName": {"example":"Rowling"},
+                            "user": {"example":"1"},
+                            "title": {"example":"Harry Potter and the Philosopher's Stone"},
+                            "genre": {"example":"Fantasy"},
+                            "pages": {"example":"223"},
+                            "preview": {"example":"Harry Potter and the Philosopher's Stone is a 1997 fantasy novel written by British author J. K. Rowling. The first novel in the Harry Potter series and Rowling's debut novel, it follows Harry Potter, a young wizard who discovers his magical heritage on his eleventh birthday, when he receives a letter of acceptance to Hogwarts School of Witchcraft and Wizardry. Harry makes close friends and a few enemies during his first year at the school and with the help of his friends, he faces an attempted comeback by the dark wizard Lord Voldemort, who killed Harry's parents, but failed to kill Harry when he was just 15 months old."},
+                            "read": {"example":"reading"},
+                            "dateBought": {"example":"10/12/2022"}
+                        }   
+                      }
+                      },
+                      {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Bearer token",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      }
+                  ],
+                  "responses": {
+                      "201": {
+                      "description": "Created"
+                      },
+                      "500": {
+                      "description": "Internal Server Error"
+                      },
+                      "400": {
+                        "description": "Bad Request"
+                        }
+                  }
+                  },
+                  "delete":{
+                    "description": "Deletes record on shelf",
+                    "parameters": [
+                      {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                      },
+                      {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Bearer token",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      }
+                    ],
+                    "responses": {
+                      "204": {
+                        "description": "No Content"
+                      },
+                      "500": {
+                        "description": "Internal Server Error"
+                      },
+                      "400": {
+                        "description": "Bad Request"
+                        }
+                    }
+          
+                  }
+        },
+          "manager/shelf/findByAuthor/{:id}": {
+            "get": {
+                    "description": "Gets specific record on the shlef by author",
+                    "produces": [
+                        "application/json"
+                    ],
+                    
+                    "parameters": [
+                      {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Bearer token",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      }
+                    ],
+                    "responses": {
+                        "200": {
+                        "description": "OK"
+                        }
+                  }
+                }
+        },
+          "manager/shelf/findByTitle/{:id}": {
+            "get": {
+                    "description": "Gets specific record on the shlef by title",
+                    "produces": [
+                        "application/json"
+                    ],
+                    
+                    "parameters": [
+                      {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Bearer token",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      }
+                    ],
+                    "responses": {
+                        "200": {
+                        "description": "OK"
+                        }
+                  }
+                }
+        },
+          "manager/shelf/findByGenre/{:id}": {
+            "get": {
+                    "description": "Gets specific record on the shlef by genr",
+                    "produces": [
+                        "application/json"
+                    ],
+                    
+                    "parameters": [
+                      {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Bearer token",
+                        "required": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                      }
+                    ],
+                    "responses": {
+                        "200": {
+                        "description": "OK"
+                        }
+                  }
+                }
         }
-
       }
+    }
+      
+      
     
     
   
