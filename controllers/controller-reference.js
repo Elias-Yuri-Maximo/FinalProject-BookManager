@@ -9,22 +9,7 @@ const utils = require('../utils/utils')
 const getAll = async (req, res, next) => {
   try{
   console.log('all')
-  const result = await mongodb.getDb().db('books_db').collection('wishlist').find();
-  result.toArray().then((lists) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists);
-  });
-  }catch(err){
-    res.status(500).json(err);
-  }
-};
-
-const findByAuthor = async (req, res, next) => {
-
-  try{
-  const {authorLName} = req.query;
-  console.log(authorLName)
-  const result = await mongodb.getDb().db('books_db').collection('wishlist').find({authorLName});
+  const result = await mongodb.getDb().db('bookOfMormon').collection('bookMarks').find();
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists);
@@ -215,7 +200,6 @@ module.exports = {
   getSingle,
   createBookmark,
   updateBookmark,
-  deleteBookmark,
-  findByAuthor
+  deleteBookmark
 };
 

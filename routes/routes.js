@@ -7,7 +7,10 @@ router.get('/login',controller.login);
 //Comes back from the login screes
 router.get('/loginCallback', controller.loginCallback);
 
-router.get('/', checkAuth.auth, controller.getAll);
+//manager/wishlist/
+router.get('/wishlist/', checkAuth.auth, controller.getAll);
+
+router.get('/wishlist/findByAuthor', checkAuth.auth, controller.findByAuthor);
 
 router.get('/content/:id', checkAuth.auth, controller.findContent);
 

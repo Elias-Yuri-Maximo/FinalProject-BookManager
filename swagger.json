@@ -17,7 +17,7 @@
             }
           },
 
-      "manager/wishlist/": {
+      "/manager/wishlist/": {
         "get": {
                 "description": "Gets All records on the wishlist",
                 "produces": [
@@ -88,7 +88,7 @@
                 
             },
 
-            "manager/wishlist/{:id}": {
+            "/manager/wishlist/{:id}": {
               "get": {
                       "description": "Gets specific record on the wishlist",
                       "produces": [
@@ -187,7 +187,7 @@
               
                       }
                     },
-            "manager/wishlist/findByAuthor": {
+            "/manager/wishlist/findByAuthor": {
                   "get": {
                               "description": "Gets specific record on the wishlist by author",
                               "produces": [
@@ -196,6 +196,7 @@
                               
                               "parameters": [
                                 {
+                                  
                                   "name": "Authorization",
                                   "in": "header",
                                   "description": "Bearer token",
@@ -203,6 +204,13 @@
                                   "schema": {
                                     "type": "string"
                                   }
+                                },
+                                {
+                                  "name":"authorLName",
+                                  "in":"query",
+                                  "description":"Author's last name",
+                                  "required": true
+
                                 }
                               ],
                               "responses": {
@@ -211,7 +219,7 @@
                                   }
                             }
                           }
-            }, "manager/wishlist/findByTitle": {
+            }, "/manager/wishlist/findByTitle": {
                 "get": {
                               "description": "Gets specific record on the wishlist by author",
                               "produces": [
@@ -235,7 +243,7 @@
                                   }
                             }
                           }
-            }, "manager/wishlist/findByGenre": {
+            }, "/manager/wishlist/findByGenre": {
                 "get": {
                               "description": "Gets specific record on the wishlist by author",
                               "produces": [
@@ -262,7 +270,7 @@
                     },
 
         
-        "manager/readings/": {
+        "/manager/readings/": {
           "get": {
             "description": "Gets All records on the wishlist",
               "produces": [
@@ -430,7 +438,7 @@
           
         }
       },
-      "manager/users/": {
+      "/manager/users/": {
         "post":{
           "description": "Inserts new record",
           "parameters": [
@@ -474,7 +482,7 @@
       },
 
 
-      "manager/users/{id}": {
+      "/manager/users/{id}": {
 
         "get": {
           "description": "Gets a specific record",
@@ -591,7 +599,7 @@
 
           },      
         
-          "manager/shelf/": {
+          "/manager/shelf/": {
             "get": {
               "description": "Gets All records on the shelf",
               "produces": [
@@ -660,7 +668,7 @@
             }
             }
           },
-          "manager/shelf/{:id}": {
+          "/manager/shelf/{:id}": {
             "get": {
                     "description": "Gets specific record on the shlef by id",
                     "produces": [
@@ -761,7 +769,7 @@
           
                   }
         },
-          "manager/shelf/findByAuthor/{:id}": {
+          "/manager/shelf/findByAuthor/{:id}": {
             "get": {
                     "description": "Gets specific record on the shlef by author",
                     "produces": [
@@ -786,7 +794,7 @@
                   }
                 }
         },
-          "manager/shelf/findByTitle/{:id}": {
+          "/manager/shelf/findByTitle/{:id}": {
             "get": {
                     "description": "Gets specific record on the shlef by title",
                     "produces": [
@@ -811,7 +819,7 @@
                   }
                 }
         },
-          "manager/shelf/findByGenre/{:id}": {
+          "/manager/shelf/findByGenre/{:id}": {
             "get": {
                     "description": "Gets specific record on the shlef by genr",
                     "produces": [
