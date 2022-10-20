@@ -4,16 +4,15 @@ const axios = require('axios')
 const mongodb = require('../db/connection');
 const ObjectId = require('mongodb').ObjectId;
 const utils = require('../utils/utils')
+const WishListModel = require('../models/wishlistModel');
 
 
 const getAllWishlist = async (req, res, next) => {
   try{
   console.log('all')
-  const result = await mongodb.getDb().db('books_db').collection('wishlist').find();
-  result.toArray().then((lists) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists);
-  });
+  const list = await WishListModel.find();
+  res.setHeader('Content-Type', 'application/json');
+  res.status(200).json(list);
   }catch(err){
     res.status(500).json(err);
   }
