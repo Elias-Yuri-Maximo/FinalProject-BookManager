@@ -8,19 +8,25 @@ router.get('/login',controller.login);
 router.get('/loginCallback', controller.loginCallback);
 
 //manager/wishlist/
-router.get('/wishlist/', checkAuth.auth, controller.getAll);
+router.get('/wishlist/', checkAuth.auth, controller.getAllWishlist);
 
 router.get('/wishlist/findByAuthor', checkAuth.auth, controller.findByAuthor);
 
-router.get('/content/:id', checkAuth.auth, controller.findContent);
+router.get('/wishlist/:id', checkAuth.auth, controller.getSingleWish);
 
-router.get('/:id', checkAuth.auth, controller.getSingle);
+router.post('/wishlist/', checkAuth.auth, controller.createWish);
 
-router.post('/',checkAuth.auth, controller.createBookmark);
+router.put('/wishlist/:id',checkAuth.auth, controller.updateWish);
 
-router.put('/:id',checkAuth.auth, controller.updateBookmark);
+router.delete('/wishlist/:id',checkAuth.auth, controller.deleteWish);
 
-router.delete('/:id',checkAuth.auth, controller.deleteBookmark);
+//router.get('/:id', checkAuth.auth, controller.getSingle);
+
+
+
+
+
+
 
 
 module.exports = router;

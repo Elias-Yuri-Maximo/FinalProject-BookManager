@@ -5,7 +5,7 @@
       "description": "bookmarks",
       "version": "1.0.0"
     },
-    "host": "groupassingment-bookmanager.onrender.com",
+    "host": "localhost:8080",
     "basePath": "/",
 
     "paths": {
@@ -25,6 +25,7 @@
                 ],
                 
                 "parameters": [
+                  
                   {
                     "name": "Authorization",
                     "in": "header",
@@ -88,7 +89,7 @@
                 
             },
 
-            "/manager/wishlist/{:id}": {
+            "/manager/wishlist/{id}": {
               "get": {
                       "description": "Gets specific record on the wishlist",
                       "produces": [
@@ -96,6 +97,13 @@
                       ],
                       
                       "parameters": [
+            
+                        {
+                          "name": "id",
+                          "in": "path",
+                          "required": true,
+                          "type": "string"
+                        },
                         {
                           "name": "Authorization",
                           "in": "header",
@@ -116,6 +124,12 @@
               "put":{
                       "description": "Inserts new record",
                       "parameters": [
+                        {
+                          "name": "id",
+                          "in": "path",
+                          "required": true,
+                          "type": "string"
+                        },
                           {
                           "name": "body",
                           "in": "body",
@@ -143,8 +157,8 @@
                           }
                       ],
                       "responses": {
-                          "201": {
-                          "description": "Created"
+                          "204": {
+                          "description": "No Content"
                           },
                           "500": {
                           "description": "Internal Server Error"
