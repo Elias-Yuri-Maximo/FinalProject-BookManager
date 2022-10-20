@@ -8,7 +8,7 @@ router.get('/login',controller.login);
 router.get('/loginCallback', controller.loginCallback);
 
 //manager/wishlist/
-router.get('/wishlist/', checkAuth.auth, controller.getAll);
+router.get('/wishlist', controller.getAll);
 
 router.get('/wishlist/findByAuthor', checkAuth.auth, controller.findByAuthor);
 

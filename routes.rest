@@ -1,7 +1,7 @@
 #LOCAHOST
 
 ### Gets all✔️
-GET http://localhost:8080/bookmarks HTTP/1.1 
+GET http://localhost:8080/manager/wishlist HTTP/1.1 
 Authorization: 
 
 ### Gets one✔️
