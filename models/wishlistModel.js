@@ -5,19 +5,15 @@ const { Schema } = mongoose; // Is like  mongoose.Schema
 const mySchema = new Schema({
     authorFName: {
         type: String,
-        required: true,
     },
     authorLName: {
         type: String,
-        required: true,
     },
     user: {
         type: String,
-        required: true,
     },
     title: {
         type: String,
-        required: true,
     },
     genre: {
         type: String,

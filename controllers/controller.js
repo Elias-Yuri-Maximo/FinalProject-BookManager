@@ -4,7 +4,7 @@ const axios = require('axios')
 const mongodb = require('../db/connection');
 const ObjectId = require('mongodb').ObjectId;
 const utils = require('../utils/utils')
-const WishListModel = require('../models/wishlistModel');
+const WishListModel = require('../models/WishListModel');
 
 
 const getAllWishlist = async (req, res, next) => {
