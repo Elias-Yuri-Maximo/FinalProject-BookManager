@@ -37,9 +37,9 @@ describe('Test wishlist', () => {
             );
         });
 
-        test('if it should return an array', async () =>{
-            expect(response.body).toBeInstanceOf(Array);
-        });
+        // test('if it should return an array', async () =>{
+        //     expect(response.body).toBeInstanceOf(Array);
+        // });
 
     });
 });
