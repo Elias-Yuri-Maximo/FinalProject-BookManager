@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1666375179850" clover="3.2.0">
-  <project timestamp="1666375179850" name="All files">
+<coverage generated="1666376406675" clover="3.2.0">
+  <project timestamp="1666376406675" name="All files">
     <metrics statements="164" coveredstatements="66" conditionals="24" coveredconditionals="0" methods="18" coveredmethods="2" elements="206" coveredelements="68" complexity="0" loc="164" ncloc="164" packages="7" files="9" classes="9"/>
     <package name="FinalProject-BookManager">
       <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
