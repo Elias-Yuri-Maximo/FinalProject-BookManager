@@ -2,6 +2,7 @@ const axios = require('axios')
 
 async function auth(req, res, next){
   try{
+    //console.log('qualquer coisa')
     const token = req.headers.authorization
     const opts = {headers:{authorization:token}}
     const response = await axios.get('https://api.github.com/user', opts)

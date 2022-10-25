@@ -32,10 +32,17 @@ function checkEmptyFields(body){
     }
 }
 
+function checkCorrectFields(fields, body){
+    //Fields is an object formated as such
+    //[field1, field2...]
+    return fields.every(e => body[e])
+
+}
 
 
 
 module.exports = {
     formatDate,
-    checkEmptyFields
+    checkEmptyFields,
+    checkCorrectFields
   };

@@ -249,6 +249,13 @@
                                   "schema": {
                                     "type": "string"
                                   }
+                                },
+                                {
+                                  "name":"title",
+                                  "in":"query",
+                                  "description":"Title of the work",
+                                  "required": true
+
                                 }
                               ],
                               "responses": {
@@ -273,6 +280,13 @@
                                   "schema": {
                                     "type": "string"
                                   }
+                                },
+                                {
+                                  "name":"genre",
+                                  "in":"query",
+                                  "description":"Genre of the book",
+                                  "required": true
+
                                 }
                               ],
                               "responses": {
@@ -286,7 +300,7 @@
         
         "/manager/readings/": {
           "get": {
-            "description": "Gets All records on the wishlist",
+            "description": "Gets All reading records.",
               "produces": [
                 "application/json"
                     ],
@@ -380,41 +394,15 @@
                           }
                         }
         },
-        "delete":{
-                    "description": "Deletes record",
-                    "parameters": [
-                      {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                      },
-                      {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Bearer token",
-                        "required": true,
-                        "schema": {
-                          "type": "string"
-                        }
-                      }
-                    ],
-                    "responses": {
-                      "204": {
-                        "description": "No Content"
-                      },
-                      "500": {
-                        "description": "Internal Server Error"
-                      },
-                      "400": {
-                        "description": "Bad Request"
-                        }
-                    }
-
-        },
                 "put":{
                   "description": "Inserts new record",
                   "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "type": "string"
+                    },
                       {
                       "name": "body",
                       "in": "body",
@@ -439,8 +427,8 @@
                       }
                   ],
                   "responses": {
-                      "201": {
-                      "description": "Created"
+                      "204": {
+                      "description": "No Content"
                       },
                       "500": {
                       "description": "Internal Server Error"
@@ -450,9 +438,64 @@
                         }
                   }
           
-        }
+        },
+        "delete":{
+          "description": "Deletes record",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "description": "Bearer token",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            },
+            "400": {
+              "description": "Bad Request"
+              }
+          }
+
+}
       },
       "/manager/users/": {
+        "get": {
+          "description": "Gets All records on the wishlist",
+            "produces": [
+              "application/json"
+                  ],
+                            
+            "parameters":     [
+                 {
+                  "name": "Authorization",
+                  "in": "header",
+                    "description": "Bearer token",
+                    "required": true,
+                      "schema": {
+                         "type": "string"
+                            }
+                              }
+                            ],
+                            "responses": {
+                                "200": {
+                                "description": "OK"
+                                }
+                          }
+                        },
         "post":{
           "description": "Inserts new record",
           "parameters": [
@@ -682,7 +725,7 @@
             }
             }
           },
-          "/manager/shelf/{:id}": {
+          "/manager/shelf/{id}": {
             "get": {
                     "description": "Gets specific record on the shlef by id",
                     "produces": [
@@ -690,6 +733,13 @@
                     ],
                     
                     "parameters": [
+                
+                        {
+                          "name": "id",
+                          "in": "path",
+                          "required": true,
+                          "type": "string"
+                        },
                       {
                         "name": "Authorization",
                         "in": "header",
@@ -709,6 +759,12 @@
                 "put":{
                   "description": "Update a record on shelf",
                   "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "type": "string"
+                    },
                       {
                       "name": "body",
                       "in": "body",
@@ -783,7 +839,7 @@
           
                   }
         },
-          "/manager/shelf/findByAuthor/{:id}": {
+          "/manager/shelf/findByAuthor/": {
             "get": {
                     "description": "Gets specific record on the shlef by author",
                     "produces": [
@@ -799,6 +855,13 @@
                         "schema": {
                           "type": "string"
                         }
+                      },
+                      {
+                        "name":"authorLName",
+                        "in":"query",
+                        "description":"Author of the work",
+                        "required": true
+
                       }
                     ],
                     "responses": {
@@ -808,7 +871,7 @@
                   }
                 }
         },
-          "/manager/shelf/findByTitle/{:id}": {
+          "/manager/shelf/findByTitle/": {
             "get": {
                     "description": "Gets specific record on the shlef by title",
                     "produces": [
@@ -824,6 +887,13 @@
                         "schema": {
                           "type": "string"
                         }
+                      },
+                      {
+                        "name":"title",
+                        "in":"query",
+                        "description":"Title of the work",
+                        "required": true
+
                       }
                     ],
                     "responses": {
@@ -833,7 +903,7 @@
                   }
                 }
         },
-          "/manager/shelf/findByGenre/{:id}": {
+          "/manager/shelf/findByGenre/": {
             "get": {
                     "description": "Gets specific record on the shlef by genr",
                     "produces": [
@@ -849,6 +919,13 @@
                         "schema": {
                           "type": "string"
                         }
+                      },
+                      {
+                        "name":"genre",
+                        "in":"query",
+                        "description":"Title of the work",
+                        "required": true
+
                       }
                     ],
                     "responses": {
